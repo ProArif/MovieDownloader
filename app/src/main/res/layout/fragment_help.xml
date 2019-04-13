@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelpFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00574B"
+        android:fontFamily="serif"
+        android:includeFontPadding="true"
+        android:padding="10dp"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:textColor="#fff"
+        android:justificationMode="inter_word"
+        android:text="     আমাদের Apps এ আপনাকে স্বাগতম।\n
+আমাদের Apps এর ব্যাবহার নিয়ে
+এই লিখাটা একটু পড়ে নিন তাই
+আপনার কোন অসুবিধা হবে না।
+প্রথমেই আপনি সিলেক্ট করে নিন আপনি মেয়ে নাকি ছেলে।
+সিলেক্ট হয়ে গেলেই নেক্সট বাটনে চাপ দিন।
+তারপর আপনার নাম দিতে বলবে
+আপনার নাম দিয়ে নেক্সট করুন।
+তারপর আপনার বয়স দিয়ে নেক্সট করুন।
+বয়স অবশ্যই ১৮ এর উপরে দিতে হবে।
+বয়সের পর মুভি কোথায় থেকে নামাতে চান তা সিলেক্ট করে নেক্সট করুন।
+মুভি নামানোর বিষয়টি  সিলেক্ট হয়ে গেলে স্কীনে যে বিজ্ঞাপন আসবে তা অবশ্যই ক্লিক করে দেখতে হবে ২০ সেকেন্ড।
+দেখার পরই অটো আপনি আপনার সেই লিংটি পাবেন।
+Apps টির নির্দেশনা যদি ফলো করেন তাহলে আরো সহজেই বুঝতে পারবেন।
+ধন্যবাদ।"
+        android:textSize="20sp"
+        android:textIsSelectable="true"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+</ScrollView>
+
+</FrameLayout>
