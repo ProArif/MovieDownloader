@@ -5,49 +5,166 @@
     android:layout_height="match_parent"
     tools:context=".DownloadFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gender"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:textColor="@android:color/black"/>
+    <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:id="@+id/genderLayout"
+     >
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/gender"
+         android:textSize="25sp"
+         android:textStyle="bold"
+         android:visibility="visible"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="200dp"
+         android:textColor="@android:color/black"/>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="25dp"
+         android:gravity="center_horizontal"
+         android:orientation="horizontal">
+
+         <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Male"
+             android:id="@+id/male"
+             android:padding="10dp"
+             android:layout_marginRight="10dp"
+             android:background="@drawable/btn_shape"
+             android:textStyle="bold"
+             />
+
+         <Button
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Female"
+             android:padding="10dp"
+             android:id="@+id/female"
+             android:layout_marginLeft="10dp"
+             android:background="@drawable/btn_shape"
+             android:textStyle="bold"
+             />
+
+     </LinearLayout>
+
+
+ </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="245dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-     <Button
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Male"
-         android:onClick="genderClickEvent"
-         android:padding="10dp"
-         android:layout_marginRight="10dp"
-         android:background="@drawable/btn_shape"
-         android:textStyle="bold"
-         />
-
-      <Button
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Female"
-          android:onClick="genderClickEvent"
-          android:padding="10dp"
-          android:layout_marginLeft="10dp"
-          android:background="@drawable/btn_shape"
-          android:textStyle="bold"
-          />
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/ageLayout"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter your Age"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/edtAge"
+            android:hint="Enter age"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/btnAgeNext"
+            android:textStyle="bold"
+            android:padding="10dp"/>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/nameLayout"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter your Name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:id="@+id/edtName"
+            android:hint="Enter Name"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:id="@+id/btnNameNext"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/choiceLayout"
+        android:layout_gravity="center_vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="How do you want to download"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Website"
+                android:id="@+id/web"
+                android:padding="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/btn_shape"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App"
+                android:padding="10dp"
+                android:id="@+id/app"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_shape"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -19,6 +22,9 @@ public class DownloadFragment extends Fragment {
 
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private Button btnMale,btnFemale,btnAgeNext,btnNameNext,btnApp,btnWeb;
+    private LinearLayout ageLayout,genderLay,nameLay,choiceLay;
+
 
 
 
@@ -40,11 +46,6 @@ public class DownloadFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
-
     }
 
     @Override
@@ -54,25 +55,110 @@ public class DownloadFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_download, container, false);
         MobileAds.initialize(view.getContext(), "ca-app-pub-3940256099942544/1033173712");
 
+        btnFemale = view.findViewById(R.id.female);
+        btnMale = view.findViewById(R.id.male);
+        btnAgeNext = view.findViewById(R.id.btnAgeNext);
+        ageLayout = view.findViewById(R.id.ageLayout);
+        genderLay = view.findViewById(R.id.genderLayout);
+        nameLay = view.findViewById(R.id.nameLayout);
+        choiceLay = view.findViewById(R.id.choiceLayout);
+        btnAgeNext = view.findViewById(R.id.btnAgeNext);
+        btnNameNext = view.findViewById(R.id.btnNameNext);
+        btnApp = view.findViewById(R.id.app);
+        btnWeb = view.findViewById(R.id.web);
+
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        mInterstitialAd = new InterstitialAd(getContext());
+        mInterstitialAd = new InterstitialAd(view.getContext());
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        btnMale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                genderClickEvent();
+            }
+        });
+        btnFemale.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                genderClickEvent();
+            }
+        });
+        btnAgeNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ageNextClick();
+            }
+        });
+        btnNameNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nameNextClick();
+            }
+        });
+        btnWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return view;
     }
 
-    public void genderClickEvent(View view){
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+    public void genderClickEvent(){
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
+            genderLay.setVisibility(View.INVISIBLE);
+            ageLayout.setVisibility(View.VISIBLE);
+
         } else {
             Log.e("TAG", "The interstitial wasn't loaded yet.");
         }
 
 
+    }
+    public void ageNextClick(){
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            ageLayout.setVisibility(View.INVISIBLE);
+            nameLay.setVisibility(View.VISIBLE);
+
+        } else {
+            Log.e("TAG", "The interstitial wasn't loaded yet.");
+        }
+    }
+    public void nameNextClick(){
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            nameLay.setVisibility(View.INVISIBLE);
+            choiceLay.setVisibility(View.VISIBLE);
+
+        } else {
+            Log.e("TAG", "The interstitial wasn't loaded yet.");
+        }
+    }
+    public void choiceClickEvent(){
+        if (mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+
+            mInterstitialAd.setAdListener(new AdListener(){
+                @Override
+                public void onAdClicked(){
+
+                }
+            });
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
