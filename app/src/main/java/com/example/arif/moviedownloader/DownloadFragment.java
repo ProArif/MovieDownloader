@@ -21,9 +21,9 @@ import com.google.android.gms.ads.MobileAds;
 public class DownloadFragment extends Fragment {
 
     private AdView mAdView;
-    private InterstitialAd mInterstitialAd;
+    private InterstitialAd mInterstitialAd,mInterstitialAd1;
     private Button btnMale,btnFemale,btnAgeNext,btnNameNext,btnApp,btnWeb;
-    private LinearLayout ageLayout,genderLay,nameLay,choiceLay;
+    private LinearLayout ageLayout,genderLay,nameLay,choiceLay,linkLay;
 
 
 
@@ -62,6 +62,7 @@ public class DownloadFragment extends Fragment {
         genderLay = view.findViewById(R.id.genderLayout);
         nameLay = view.findViewById(R.id.nameLayout);
         choiceLay = view.findViewById(R.id.choiceLayout);
+        linkLay = view.findViewById(R.id.movieLink);
         btnAgeNext = view.findViewById(R.id.btnAgeNext);
         btnNameNext = view.findViewById(R.id.btnNameNext);
         btnApp = view.findViewById(R.id.app);
@@ -74,6 +75,10 @@ public class DownloadFragment extends Fragment {
         mInterstitialAd = new InterstitialAd(view.getContext());
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mInterstitialAd1 = new InterstitialAd(view.getContext());
+        mInterstitialAd1.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd1.loadAd(new AdRequest.Builder().build());
 
         btnMale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,13 +107,13 @@ public class DownloadFragment extends Fragment {
         btnWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                choiceClickEvent();
             }
         });
         btnApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                choiceClickEvent();
             }
         });
 
@@ -119,6 +124,7 @@ public class DownloadFragment extends Fragment {
 
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
             genderLay.setVisibility(View.INVISIBLE);
             ageLayout.setVisibility(View.VISIBLE);
 
@@ -129,8 +135,9 @@ public class DownloadFragment extends Fragment {
 
     }
     public void ageNextClick(){
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+        if (mInterstitialAd1.isLoaded()) {
+            mInterstitialAd1.show();
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
             ageLayout.setVisibility(View.INVISIBLE);
             nameLay.setVisibility(View.VISIBLE);
 
@@ -141,6 +148,7 @@ public class DownloadFragment extends Fragment {
     public void nameNextClick(){
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
+            mInterstitialAd1.loadAd(new AdRequest.Builder().build());
             nameLay.setVisibility(View.INVISIBLE);
             choiceLay.setVisibility(View.VISIBLE);
 
@@ -149,13 +157,15 @@ public class DownloadFragment extends Fragment {
         }
     }
     public void choiceClickEvent(){
-        if (mInterstitialAd.isLoaded()){
-            mInterstitialAd.show();
-
-            mInterstitialAd.setAdListener(new AdListener(){
+        if (mInterstitialAd1.isLoaded()){
+            mInterstitialAd1.show();
+            //mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd1.setAdListener(new AdListener(){
                 @Override
                 public void onAdClicked(){
 
+                    choiceLay.setVisibility(View.INVISIBLE);
+                    linkLay.setVisibility(View.VISIBLE);
                 }
             });
         }
