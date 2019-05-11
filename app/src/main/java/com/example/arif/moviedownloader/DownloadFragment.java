@@ -1,6 +1,7 @@
 package com.example.arif.moviedownloader;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -53,7 +55,7 @@ public class DownloadFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_download, container, false);
-        MobileAds.initialize(view.getContext(), "ca-app-pub-3940256099942544/1033173712");
+        MobileAds.initialize(view.getContext(), getResources().getString(R.string.app_id));
 
         btnFemale = view.findViewById(R.id.female);
         btnMale = view.findViewById(R.id.male);
@@ -73,11 +75,12 @@ public class DownloadFragment extends Fragment {
         mAdView.loadAd(adRequest);
 
         mInterstitialAd = new InterstitialAd(view.getContext());
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
+        //Another loaded ad for ready to show
         mInterstitialAd1 = new InterstitialAd(view.getContext());
-        mInterstitialAd1.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd1.setAdUnitId(getResources().getString(R.string.interstitial));
         mInterstitialAd1.loadAd(new AdRequest.Builder().build());
 
         btnMale.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +123,8 @@ public class DownloadFragment extends Fragment {
         return view;
     }
 
+
+
     public void genderClickEvent(){
 
         if (mInterstitialAd.isLoaded()) {
@@ -130,6 +135,7 @@ public class DownloadFragment extends Fragment {
 
         } else {
             Log.e("TAG", "The interstitial wasn't loaded yet.");
+            Toast.makeText(getContext(),"Please wait a second and try again",Toast.LENGTH_LONG).show();
         }
 
 
@@ -143,6 +149,7 @@ public class DownloadFragment extends Fragment {
 
         } else {
             Log.e("TAG", "The interstitial wasn't loaded yet.");
+            Toast.makeText(getContext(),"Please wait a second and try again",Toast.LENGTH_LONG).show();
         }
     }
     public void nameNextClick(){
@@ -154,6 +161,7 @@ public class DownloadFragment extends Fragment {
 
         } else {
             Log.e("TAG", "The interstitial wasn't loaded yet.");
+            Toast.makeText(getContext(),"Please wait a second and try again",Toast.LENGTH_LONG).show();
         }
     }
     public void choiceClickEvent(){
@@ -166,6 +174,12 @@ public class DownloadFragment extends Fragment {
 
                     choiceLay.setVisibility(View.INVISIBLE);
                     linkLay.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAdFailedToLoad(int i) {
+                    super.onAdFailedToLoad(i);
+                    Toast.makeText(getContext(),"Please wait a second and try again",Toast.LENGTH_LONG).show();
                 }
             });
         }
